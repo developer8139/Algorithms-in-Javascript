@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome To My Algorithm Site</h1>
+	<script type="text/javascript">
+        //Linear Search
+
+        //Test Array
+        let ar = [1,2,3,4,5,6,7,8,9,10]
+
+        function linearSearch(arr, value) {
+        	for(let i = 0; i < arr.length; i++) {
+        		if(arr[i] === value) {
+        			return arr[i]
+        		}
+        	}
+
+        	return false
+        }
+
+        //console.log(linearSearch(ar, 11))
+
+        //Recursive Linear Search
+
+
+        function recursiveLinearSearch(arr, val) {
+
+            let i = 0;
+
+        	if(arr[i] === val) {
+        		return arr[i]
+        	} else {
+        		return recursiveLinearSearch(arr.splice(i + 1), val);
+        	}
+
+        }
+
+        //console.log(recursiveLinearSearch(ar, 2))
+
+
+
+		//Binary Search
+
+		function BinarySearch(arr, item) {
+			let min = 0;
+			let max = arr.length - 1;
+
+			while(min <= max) {
+				let mid = Math.floor(min + (max - min) / 2);
+
+				if(arr[mid] === item) {
+					return arr[mid]
+				} else if(arr[mid] > item) {
+					max = mid - 1
+				} else {
+					min = mid + 1
+				}
+			}
+
+		}
+
+        //console.log(BinarySearch(ar, 8))
+
+
+        //RecursiveBinarySearch
+
+        function RecursiveBinarySearch(arr, item, min, max) {
+        	let mid = Math.floor(min + (max - min) / 2);
+
+        	if(!arr.includes(arr[mid])) {
+        		return -1;
+        	}
+        	if(arr[mid] === item) {
+        		return arr[mid]
+        	} else if (arr[mid] > item) {
+        		return RecursiveBinarySearch(arr, item, min, max - 1)
+        	} else {
+        		return RecursiveBinarySearch(arr, item, min + 1, max);
+        	}
+        }
+
+
+        console.log(RecursiveBinarySearch(ar, 4, 0, ar.length - 1))
+
+		//Merge Sort
+
+		function MergeSort(arr, value) {
+
+		}
+
+
+		//Breadth first search
+
+		function BreadthFirstSearch() {
+
+		}
+	</script>
+</body>
+</html>
