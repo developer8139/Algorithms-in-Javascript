@@ -8,11 +8,20 @@
 </head>
 <body>
     <h1>Welcome To My Algorithm Site</h1>
+    
+
+    
 	<script type="text/javascript">
+       
+
+
+        
         //Linear Search
 
         //Test Array
-        let ar = [1,2,3,4,5,6,7,8,9,10]
+        let ar = [1,2,3,4,5,6,7,8,9,10];
+        let unsorted = [3,2,5,6,1,7,8,9,11];
+
 
         function linearSearch(arr, value) {
         	for(let i = 0; i < arr.length; i++) {
@@ -48,17 +57,23 @@
 		//Binary Search
 
 		function BinarySearch(arr, item) {
+            //setting the min and max values, these will determine what side of the array we go to
 			let min = 0;
 			let max = arr.length - 1;
 
 			while(min <= max) {
+                //mid is to get the middle value of the array on each iteration of the loop
 				let mid = Math.floor(min + (max - min) / 2);
 
+                //checking to see if the middle value equals the value that we are searching for
 				if(arr[mid] === item) {
 					return arr[mid]
+                //here we are checking to see if the middle value is greater than the value provided
 				} else if(arr[mid] > item) {
+                    //if it is then we set max to mid value minus one, which will bring use to the right side of the array
 					max = mid - 1
 				} else {
+                    //else we increment the middle value and go to the left side of the array
 					min = mid + 1
 				}
 			}
@@ -90,16 +105,66 @@
 
 		//Merge Sort
 
-		function MergeSort(arr, value) {
+        function sort(arr1, arr2) {
+            let result = [];
+            
+            //the while loop is comparing the first element of each array
+            //and then putting the lowest element into the result array
+            while(arr1.length > 0 && arr2.length > 0) {
+                result.push(arr1[0] < arr2[0] ? arr1.shift() : arr2.shift());
+            }
+            
+            //here I'm concatenating the arrays together
+            return result.concat(arr1.length ? arr1 : arr2);
 
+        }
+
+		function MergeSort(arr) {
+            if(arr.length < 2) {
+                return arr
+            }
+            
+            //gets the middle of the array
+            let mid = Math.floor(arr.length / 2);
+            //gets the left side of the array
+            let left = mergeSort(arr.slice(0, mid));
+            //gets the right side of the array
+            let right = mergeSort(arr.slice(mid));
+            
+            return merge(left, right)
 		}
 
+        //Selection Sort
 
-		//Breadth first search
+        function SelectionSort(arr) {
+            let min = 0;
+            let temp = 0;
 
-		function BreadthFirstSearch() {
+            //we are looping through array and storing each value in min
+            for(let i = 0; i < arr.length; i++) {
+                min = i;
 
-		}
+                //here we are looping through the array but starting at the second item in the array,
+                //we are trying to find the min value and store it in a variable 
+                for(let x = i + 1; x < arr.length; x++) {
+                    if(arr[x] < arr[min]) {
+                        min = x
+                    }
+                }
+
+                //this is where we do the switching of values,
+                //putting the min value to the front of the array
+                temp = arr[i];
+                arr[i] = arr[min];
+                arr[min] = temp
+                
+            }
+
+            return arr
+        }
+
+        SelectionSort(unsorted)
+
 	</script>
 </body>
 </html>
